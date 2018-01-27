@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whh.ssm.dao.TSpriderMapper">
+  <resultMap id="BaseResultMap" type="com.whh.ssm.model.TSprider">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="site_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="category_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ispage" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="maxpage" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="startpage" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="incrementpage" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="runstatus" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="spridernum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="isalbumpage" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="curpageno" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pagesize" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="offset" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="spridersite" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="spridersitedomain" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="portalurl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="storepath" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="albumurlregx" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="albumpageurlregx" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resourceregx" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="albumidregx" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="durlregx" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sourceencoding" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="spridername" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="spriderurl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="expand" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="picdescription" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cutfloor" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cuttop" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cutleft" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cutright" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, site_id, category_id, ispage, maxpage, startpage, incrementpage, runstatus, status, 
+    spridernum, isalbumpage, curpageno, pagesize, offset, spridersite, spridersitedomain, 
+    portalurl, storepath, albumurlregx, albumpageurlregx, resourceregx, albumidregx, 
+    durlregx, sourceencoding, spridername, spriderurl, expand, picdescription, cutfloor, 
+    cuttop, cutleft, cutright
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sprider
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_sprider
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.whh.ssm.model.TSprider">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_sprider (site_id, category_id, ispage, 
+      maxpage, startpage, incrementpage, 
+      runstatus, status, spridernum, 
+      isalbumpage, curpageno, pagesize, 
+      offset, spridersite, spridersitedomain, 
+      portalurl, storepath, albumurlregx, 
+      albumpageurlregx, resourceregx, albumidregx, 
+      durlregx, sourceencoding, spridername, 
+      spriderurl, expand, picdescription, 
+      cutfloor, cuttop, cutleft, 
+      cutright)
+    values (#{siteId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{ispage,jdbcType=INTEGER}, 
+      #{maxpage,jdbcType=INTEGER}, #{startpage,jdbcType=INTEGER}, #{incrementpage,jdbcType=INTEGER}, 
+      #{runstatus,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{spridernum,jdbcType=INTEGER}, 
+      #{isalbumpage,jdbcType=INTEGER}, #{curpageno,jdbcType=INTEGER}, #{pagesize,jdbcType=INTEGER}, 
+      #{offset,jdbcType=INTEGER}, #{spridersite,jdbcType=VARCHAR}, #{spridersitedomain,jdbcType=VARCHAR}, 
+      #{portalurl,jdbcType=VARCHAR}, #{storepath,jdbcType=VARCHAR}, #{albumurlregx,jdbcType=VARCHAR}, 
+      #{albumpageurlregx,jdbcType=VARCHAR}, #{resourceregx,jdbcType=VARCHAR}, #{albumidregx,jdbcType=VARCHAR}, 
+      #{durlregx,jdbcType=VARCHAR}, #{sourceencoding,jdbcType=VARCHAR}, #{spridername,jdbcType=VARCHAR}, 
+      #{spriderurl,jdbcType=VARCHAR}, #{expand,jdbcType=VARCHAR}, #{picdescription,jdbcType=VARCHAR}, 
+      #{cutfloor,jdbcType=INTEGER}, #{cuttop,jdbcType=INTEGER}, #{cutleft,jdbcType=INTEGER}, 
+      #{cutright,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.whh.ssm.model.TSprider">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_sprider
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="siteId != null">
+        site_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="ispage != null">
+        ispage,
+      </if>
+      <if test="maxpage != null">
+        maxpage,
+      </if>
+      <if test="startpage != null">
+        startpage,
+      </if>
+      <if test="incrementpage != null">
+        incrementpage,
+      </if>
+      <if test="runstatus != null">
+        runstatus,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="spridernum != null">
+        spridernum,
+      </if>
+      <if test="isalbumpage != null">
+        isalbumpage,
+      </if>
+      <if test="curpageno != null">
+        curpageno,
+      </if>
+      <if test="pagesize != null">
+        pagesize,
+      </if>
+      <if test="offset != null">
+        offset,
+      </if>
+      <if test="spridersite != null">
+        spridersite,
+      </if>
+      <if test="spridersitedomain != null">
+        spridersitedomain,
+      </if>
+      <if test="portalurl != null">
+        portalurl,
+      </if>
+      <if test="storepath != null">
+        storepath,
+      </if>
+      <if test="albumurlregx != null">
+        albumurlregx,
+      </if>
+      <if test="albumpageurlregx != null">
+        albumpageurlregx,
+      </if>
+      <if test="resourceregx != null">
+        resourceregx,
+      </if>
+      <if test="albumidregx != null">
+        albumidregx,
+      </if>
+      <if test="durlregx != null">
+        durlregx,
+      </if>
+      <if test="sourceencoding != null">
+        sourceencoding,
+      </if>
+      <if test="spridername != null">
+        spridername,
+      </if>
+      <if test="spriderurl != null">
+        spriderurl,
+      </if>
+      <if test="expand != null">
+        expand,
+      </if>
+      <if test="picdescription != null">
+        picdescription,
+      </if>
+      <if test="cutfloor != null">
+        cutfloor,
+      </if>
+      <if test="cuttop != null">
+        cuttop,
+      </if>
+      <if test="cutleft != null">
+        cutleft,
+      </if>
+      <if test="cutright != null">
+        cutright,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="siteId != null">
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="ispage != null">
+        #{ispage,jdbcType=INTEGER},
+      </if>
+      <if test="maxpage != null">
+        #{maxpage,jdbcType=INTEGER},
+      </if>
+      <if test="startpage != null">
+        #{startpage,jdbcType=INTEGER},
+      </if>
+      <if test="incrementpage != null">
+        #{incrementpage,jdbcType=INTEGER},
+      </if>
+      <if test="runstatus != null">
+        #{runstatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="spridernum != null">
+        #{spridernum,jdbcType=INTEGER},
+      </if>
+      <if test="isalbumpage != null">
+        #{isalbumpage,jdbcType=INTEGER},
+      </if>
+      <if test="curpageno != null">
+        #{curpageno,jdbcType=INTEGER},
+      </if>
+      <if test="pagesize != null">
+        #{pagesize,jdbcType=INTEGER},
+      </if>
+      <if test="offset != null">
+        #{offset,jdbcType=INTEGER},
+      </if>
+      <if test="spridersite != null">
+        #{spridersite,jdbcType=VARCHAR},
+      </if>
+      <if test="spridersitedomain != null">
+        #{spridersitedomain,jdbcType=VARCHAR},
+      </if>
+      <if test="portalurl != null">
+        #{portalurl,jdbcType=VARCHAR},
+      </if>
+      <if test="storepath != null">
+        #{storepath,jdbcType=VARCHAR},
+      </if>
+      <if test="albumurlregx != null">
+        #{albumurlregx,jdbcType=VARCHAR},
+      </if>
+      <if test="albumpageurlregx != null">
+        #{albumpageurlregx,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceregx != null">
+        #{resourceregx,jdbcType=VARCHAR},
+      </if>
+      <if test="albumidregx != null">
+        #{albumidregx,jdbcType=VARCHAR},
+      </if>
+      <if test="durlregx != null">
+        #{durlregx,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceencoding != null">
+        #{sourceencoding,jdbcType=VARCHAR},
+      </if>
+      <if test="spridername != null">
+        #{spridername,jdbcType=VARCHAR},
+      </if>
+      <if test="spriderurl != null">
+        #{spriderurl,jdbcType=VARCHAR},
+      </if>
+      <if test="expand != null">
+        #{expand,jdbcType=VARCHAR},
+      </if>
+      <if test="picdescription != null">
+        #{picdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="cutfloor != null">
+        #{cutfloor,jdbcType=INTEGER},
+      </if>
+      <if test="cuttop != null">
+        #{cuttop,jdbcType=INTEGER},
+      </if>
+      <if test="cutleft != null">
+        #{cutleft,jdbcType=INTEGER},
+      </if>
+      <if test="cutright != null">
+        #{cutright,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.whh.ssm.model.TSprider">
+    update t_sprider
+    <set>
+      <if test="siteId != null">
+        site_id = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="ispage != null">
+        ispage = #{ispage,jdbcType=INTEGER},
+      </if>
+      <if test="maxpage != null">
+        maxpage = #{maxpage,jdbcType=INTEGER},
+      </if>
+      <if test="startpage != null">
+        startpage = #{startpage,jdbcType=INTEGER},
+      </if>
+      <if test="incrementpage != null">
+        incrementpage = #{incrementpage,jdbcType=INTEGER},
+      </if>
+      <if test="runstatus != null">
+        runstatus = #{runstatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="spridernum != null">
+        spridernum = #{spridernum,jdbcType=INTEGER},
+      </if>
+      <if test="isalbumpage != null">
+        isalbumpage = #{isalbumpage,jdbcType=INTEGER},
+      </if>
+      <if test="curpageno != null">
+        curpageno = #{curpageno,jdbcType=INTEGER},
+      </if>
+      <if test="pagesize != null">
+        pagesize = #{pagesize,jdbcType=INTEGER},
+      </if>
+      <if test="offset != null">
+        offset = #{offset,jdbcType=INTEGER},
+      </if>
+      <if test="spridersite != null">
+        spridersite = #{spridersite,jdbcType=VARCHAR},
+      </if>
+      <if test="spridersitedomain != null">
+        spridersitedomain = #{spridersitedomain,jdbcType=VARCHAR},
+      </if>
+      <if test="portalurl != null">
+        portalurl = #{portalurl,jdbcType=VARCHAR},
+      </if>
+      <if test="storepath != null">
+        storepath = #{storepath,jdbcType=VARCHAR},
+      </if>
+      <if test="albumurlregx != null">
+        albumurlregx = #{albumurlregx,jdbcType=VARCHAR},
+      </if>
+      <if test="albumpageurlregx != null">
+        albumpageurlregx = #{albumpageurlregx,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceregx != null">
+        resourceregx = #{resourceregx,jdbcType=VARCHAR},
+      </if>
+      <if test="albumidregx != null">
+        albumidregx = #{albumidregx,jdbcType=VARCHAR},
+      </if>
+      <if test="durlregx != null">
+        durlregx = #{durlregx,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceencoding != null">
+        sourceencoding = #{sourceencoding,jdbcType=VARCHAR},
+      </if>
+      <if test="spridername != null">
+        spridername = #{spridername,jdbcType=VARCHAR},
+      </if>
+      <if test="spriderurl != null">
+        spriderurl = #{spriderurl,jdbcType=VARCHAR},
+      </if>
+      <if test="expand != null">
+        expand = #{expand,jdbcType=VARCHAR},
+      </if>
+      <if test="picdescription != null">
+        picdescription = #{picdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="cutfloor != null">
+        cutfloor = #{cutfloor,jdbcType=INTEGER},
+      </if>
+      <if test="cuttop != null">
+        cuttop = #{cuttop,jdbcType=INTEGER},
+      </if>
+      <if test="cutleft != null">
+        cutleft = #{cutleft,jdbcType=INTEGER},
+      </if>
+      <if test="cutright != null">
+        cutright = #{cutright,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.whh.ssm.model.TSprider">
+    update t_sprider
+    set site_id = #{siteId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      ispage = #{ispage,jdbcType=INTEGER},
+      maxpage = #{maxpage,jdbcType=INTEGER},
+      startpage = #{startpage,jdbcType=INTEGER},
+      incrementpage = #{incrementpage,jdbcType=INTEGER},
+      runstatus = #{runstatus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      spridernum = #{spridernum,jdbcType=INTEGER},
+      isalbumpage = #{isalbumpage,jdbcType=INTEGER},
+      curpageno = #{curpageno,jdbcType=INTEGER},
+      pagesize = #{pagesize,jdbcType=INTEGER},
+      offset = #{offset,jdbcType=INTEGER},
+      spridersite = #{spridersite,jdbcType=VARCHAR},
+      spridersitedomain = #{spridersitedomain,jdbcType=VARCHAR},
+      portalurl = #{portalurl,jdbcType=VARCHAR},
+      storepath = #{storepath,jdbcType=VARCHAR},
+      albumurlregx = #{albumurlregx,jdbcType=VARCHAR},
+      albumpageurlregx = #{albumpageurlregx,jdbcType=VARCHAR},
+      resourceregx = #{resourceregx,jdbcType=VARCHAR},
+      albumidregx = #{albumidregx,jdbcType=VARCHAR},
+      durlregx = #{durlregx,jdbcType=VARCHAR},
+      sourceencoding = #{sourceencoding,jdbcType=VARCHAR},
+      spridername = #{spridername,jdbcType=VARCHAR},
+      spriderurl = #{spriderurl,jdbcType=VARCHAR},
+      expand = #{expand,jdbcType=VARCHAR},
+      picdescription = #{picdescription,jdbcType=VARCHAR},
+      cutfloor = #{cutfloor,jdbcType=INTEGER},
+      cuttop = #{cuttop,jdbcType=INTEGER},
+      cutleft = #{cutleft,jdbcType=INTEGER},
+      cutright = #{cutright,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whh.ssm.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.whh.ssm.model.Comment">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ARTICLE_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="CONTENT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LEAVE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="LEAVE_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="URL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LEAVE_EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SITEMAP_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="TOUTIAO_ID" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="SPRIDER_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="ARTICLE_CREATOR" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ARTICLE_ID, CONTENT, LEAVE_TIME, LEAVE_NAME, URL, LEAVE_EMAIL, SITEMAP_ID, TOUTIAO_ID, 
+    SPRIDER_TIME, ARTICLE_CREATOR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.whh.ssm.model.Comment">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into comment (ARTICLE_ID, CONTENT, LEAVE_TIME, 
+      LEAVE_NAME, URL, LEAVE_EMAIL, 
+      SITEMAP_ID, TOUTIAO_ID, SPRIDER_TIME, 
+      ARTICLE_CREATOR)
+    values (#{articleId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{leaveTime,jdbcType=TIMESTAMP}, 
+      #{leaveName,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{leaveEmail,jdbcType=VARCHAR}, 
+      #{sitemapId,jdbcType=INTEGER}, #{toutiaoId,jdbcType=BIGINT}, #{spriderTime,jdbcType=TIMESTAMP}, 
+      #{articleCreator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.whh.ssm.model.Comment">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="articleId != null">
+        ARTICLE_ID,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="leaveTime != null">
+        LEAVE_TIME,
+      </if>
+      <if test="leaveName != null">
+        LEAVE_NAME,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="leaveEmail != null">
+        LEAVE_EMAIL,
+      </if>
+      <if test="sitemapId != null">
+        SITEMAP_ID,
+      </if>
+      <if test="toutiaoId != null">
+        TOUTIAO_ID,
+      </if>
+      <if test="spriderTime != null">
+        SPRIDER_TIME,
+      </if>
+      <if test="articleCreator != null">
+        ARTICLE_CREATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="articleId != null">
+        #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveTime != null">
+        #{leaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveName != null">
+        #{leaveName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveEmail != null">
+        #{leaveEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sitemapId != null">
+        #{sitemapId,jdbcType=INTEGER},
+      </if>
+      <if test="toutiaoId != null">
+        #{toutiaoId,jdbcType=BIGINT},
+      </if>
+      <if test="spriderTime != null">
+        #{spriderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleCreator != null">
+        #{articleCreator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.whh.ssm.model.Comment">
+    update comment
+    <set>
+      <if test="articleId != null">
+        ARTICLE_ID = #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveTime != null">
+        LEAVE_TIME = #{leaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveName != null">
+        LEAVE_NAME = #{leaveName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveEmail != null">
+        LEAVE_EMAIL = #{leaveEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sitemapId != null">
+        SITEMAP_ID = #{sitemapId,jdbcType=INTEGER},
+      </if>
+      <if test="toutiaoId != null">
+        TOUTIAO_ID = #{toutiaoId,jdbcType=BIGINT},
+      </if>
+      <if test="spriderTime != null">
+        SPRIDER_TIME = #{spriderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleCreator != null">
+        ARTICLE_CREATOR = #{articleCreator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.whh.ssm.model.Comment">
+    update comment
+    set ARTICLE_ID = #{articleId,jdbcType=INTEGER},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      LEAVE_TIME = #{leaveTime,jdbcType=TIMESTAMP},
+      LEAVE_NAME = #{leaveName,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      LEAVE_EMAIL = #{leaveEmail,jdbcType=VARCHAR},
+      SITEMAP_ID = #{sitemapId,jdbcType=INTEGER},
+      TOUTIAO_ID = #{toutiaoId,jdbcType=BIGINT},
+      SPRIDER_TIME = #{spriderTime,jdbcType=TIMESTAMP},
+      ARTICLE_CREATOR = #{articleCreator,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
